@@ -1,26 +1,92 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-fraunces);
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/*
+ * Paleta de marca Ludus (docs/ludus-web-documento-completo.md, sección 2).
+ * Crema, salvia claro/oscuro y azul cielo son los hex exactos del documento;
+ * el resto de tokens (foreground, muted, border...) son neutros derivados,
+ * necesarios para un sistema de diseño completo pero no definidos en el documento.
+ * Solo modo claro: la marca no define paleta oscura y no es un producto tipo
+ * dashboard, así que se omite dark mode en esta primera fase.
+ */
+:root {
+  --radius: 0.75rem;
+
+  --background: #f7f4ec; /* crema */
+  --foreground: #262420; /* neutro cálido, casi negro */
+
+  --card: #ffffff;
+  --card-foreground: var(--foreground);
+  --popover: #ffffff;
+  --popover-foreground: var(--foreground);
+
+  --primary: #597654; /* salvia oscuro — CTAs y texto destacado. Ajustado desde #5C7A57 (mínimo imprescindible) para cumplir WCAG AA 4.5:1 como texto sobre crema */
+  --primary-foreground: #ffffff;
+
+  --secondary: #a9c4a5; /* salvia claro — acentos, badges */
+  --secondary-foreground: #33472f;
+
+  --accent: #afcbe0; /* azul cielo — acento secundario */
+  --accent-foreground: #1f3547;
+
+  --muted: #efead9;
+  --muted-foreground: #6b6459;
+
+  --destructive: #b3413a;
+  --destructive-foreground: #ffffff;
+
+  --border: #e3ddcb;
+  --input: #e3ddcb;
+  --ring: #597654;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
