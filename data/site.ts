@@ -21,7 +21,7 @@ export const siteConfig = {
     modality: "Atención presencial y online",
   },
   contact: {
-    email: "florecepsieducativa@gmail.com" as string | null,
+    email: "luduspsicologiaeducativa@gmail.com" as string | null,
     phone: "669693478" as string | null,
     whatsapp: "669693478" as string | null,
   },
