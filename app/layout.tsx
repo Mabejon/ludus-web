@@ -67,11 +67,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        {gaId && <GoogleAnalytics gaId={gaId} />}
+        {clarityId && <MicrosoftClarity clarityId={clarityId} />}
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
-        {gaId && <GoogleAnalytics gaId={gaId} />}
-        {clarityId && <MicrosoftClarity clarityId={clarityId} />}
       </body>
     </html>
   );
