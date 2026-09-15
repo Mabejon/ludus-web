@@ -4,19 +4,20 @@ import { useEffect } from "react";
 
 declare global {
   interface Window {
-    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
 /**
- * Empuja un evento a window.dataLayer al montar. Tanto GA4 (vía gtag.js) como,
- * en el futuro, Google Tag Manager leen del mismo array, así que es seguro
- * aunque ninguno de los dos esté cargado todavía — el evento queda en cola.
+ * Dispara un evento de GA4 al montar, vía la función gtag() global (definida por
+ * GoogleAnalytics en layout.tsx, que se monta antes que el contenido de la página).
+ * Si NEXT_PUBLIC_GA_ID no está configurada, gtag no existe y esto no hace nada.
  */
 export function ConversionEvent({ event }: { event: string }) {
   useEffect(() => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push(["event", event]);
+    if (typeof window.gtag === "function") {
+      window.gtag("event", event);
+    }
   }, [event]);
 
   return null;
