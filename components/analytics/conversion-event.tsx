@@ -16,7 +16,7 @@ declare global {
 export function ConversionEvent({ event }: { event: string }) {
   useEffect(() => {
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event });
+    window.dataLayer.push(["event", event]);
   }, [event]);
 
   return null;
